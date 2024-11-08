@@ -1,0 +1,20 @@
+{
+	"name": "humanmade/responsive-media-cover-block",
+	"description": "Extends the core cover block to allow for a different image or video for mobile",
+	"type": "wordpress-plugin",
+	"require": {
+		"composer/installers": "^1 || ^2"
+	},
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Human Made Limited",
+			"email": "hello@humanmade.com"
+		}
+	],
+	"config": {
+		"allow-plugins": {
+			"composer/installers": true
+		}
+	}
+}

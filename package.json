@@ -1,0 +1,13 @@
+{
+  "name": "responsive-media-cover-block",
+	"description": "Extends the core cover block to allow for a different image or video for mobile",
+	"author": "Human Made Limited",
+	"license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "@wordpress/scripts": "^30.4.0"
+  },
+  "scripts": {
+      "start": "wp-scripts start",
+      "build": "wp-scripts build"
+  }
+}
