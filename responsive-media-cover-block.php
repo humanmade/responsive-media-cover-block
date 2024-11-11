@@ -50,7 +50,7 @@ function render_cover_block( string $content, array $block ): string {
 	ob_start();
 
 	$id = uniqid();
-	$content = str_replace( 'class="wp-block-cover ', 'class="wp-block-cover wp-block-cover-' . $id . ' ', $content );
+	$content = preg_replace( '/class="wp-block-cover( |")/', 'class="wp-block-cover wp-block-cover-' . $id . '$1', $content );
 
 	/**
 	 * Filter the breakpoint at which the mobile media is displayed.
@@ -96,10 +96,11 @@ function render_cover_block( string $content, array $block ): string {
 		$src = wp_get_attachment_url( $block['attrs']['mobileMediaId'] );
 		printf(
 			'<video class="%s" autoplay muted loop playsinline src="%s" data-object-fit="cover"></video>',
-			'wp-block-cover__video-background wp-block-cover__video-background--mobile intrinsic-ignore mobile',
+			'wp-block-cover__video-background mobile intrinsic-ignore mobile',
 			esc_attr( $src )
 		);
 	}
 
-	return preg_replace( '/(<div class="wp-block-cover .+?>)/m', '$1' . ob_get_clean(), $content );
+	$pattern = '/(<(?:img|video)[^>]*\bclass="[^"]*\bwp-block-cover__(?:image|video)-background\b[^"]*"[^>]*?(?:\/>|><\/video>))/m';
+	return preg_replace( $pattern, '$1' . ob_get_clean(), $content );
 }
